@@ -20,7 +20,8 @@
     Layout = "_Layout";
 }
 
-<!DOCTYPE html>
+
+@* <!DOCTYPE html>
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -29,17 +30,6 @@
     <body>
 
         <h1>Future Value Calculator</h1>
-
-        @* Using only a controller, NO model
-        <p>Customer: @ViewBag.Name</p>
-        <p>ID: @ViewBag.FV</p>
-        <p>Age: @ViewBag.Age</p>
-        *@
-
-        @*Submitting this form is:
-            - a Post request action
-            - using the method 'Index'
-        *@
         <form asp-action="Index" method="post">
 
             <div asp-validation-summary="All"></div>
@@ -66,4 +56,55 @@
             <a asp-action="Index">Clear</a>
         </form>
     </body>
-</html>
+</html> *@
+
+<div class="container">
+    <h1 class="mt-3 mb-4">@ViewBag.Title</h1>
+    
+    <form asp-action="Index" method="post">
+        <div class="row">
+            <label asp-for="MonthlyInvestment" class="col-md-3 col-form-label">Monthly Investment:</label>
+            <div class="col-md-3">
+                <input asp-for="MonthlyInvestment" class="form-control" />
+            </div>
+
+            <span asp-validation-for="MonthlyInvestment" class="col text-danger"></span>
+        </div>
+
+        <div class="row">
+            <label asp-for="YearlyInterestRate" class="col-md-3 col-form-label">Yearly Interest Rate:</label>
+            <div class="col-md-3">
+                <input asp-for="YearlyInterestRate" class="form-control" />
+            </div>
+
+            <span asp-validation-for="YearlyInterestRate" class="col text-danger"></span>
+        </div>
+
+        <div class="row">
+            <label asp-for="Years" class="col-md-3 col-form-label">Number of Years:</label>
+            <div class="col-md-3">
+                <input asp-for="Years" class="form-control" />
+            </div>
+            
+            <span asp-validation-for="Years" class="col text-danger"></span>
+        </div>
+
+        <div class="row">
+            <label class="col-md-3 col-form-label">Future Value:</label>
+            
+            <div class="col-md-3">
+                <input value="@ViewBag.FV.ToString("C2")" readonly class="form-control"/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col offset-md-3">
+                <button type="submit" class="btn btn-primary">Calculate</button>
+
+                <a asp-action="Index" class="btn btn-outline-secondary">Clear</a>
+            </div>
+        </div>
+
+    </form>
+
+</div>

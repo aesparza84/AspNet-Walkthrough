@@ -2,12 +2,37 @@
 
 <html>
 <head>
+    
+    @* For Bootstrap, you need to add a meta tag whose name attr. is 'viewport'*@
+        @* The 'content' here ensures that the web page is the size of the device and not fixed.*@
     <meta name="viewport" content="width=device-width" />
+
     <title>@ViewBag.Title</title>
+
+    @*Linking the style sheets.
+
+     SEQUENCE MATTERS!
+     Add the bootstrap style sheet, THEN override it with out custom stylesheet.            
+    *@
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/MyStyle.css" />
+
+    @*Attaching libraries
+
+      SEQUENCE MATTERS
+      ...Because the Bootstrap here relies on the popper library
+    *@
+    <script src="~/lib/popper.js/umd/popper.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+
+    @*JS Data validation libraries*@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
 </head>
 <body>
-    <div>
+    <div class="container">
         @RenderBody()
     </div>
 </body>
